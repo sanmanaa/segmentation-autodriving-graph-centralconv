@@ -1,0 +1,28 @@
+# Single node Mapillary training recipe
+# Requires 32GB GPU
+
+CMD: "python -m torch.distributed.launch --nproc_per_node=1 train.py"
+
+HPARAMS: [
+  {
+   dataset: mapillary,
+   cv: 0,
+   result_dir: LOGDIR,
+
+   pre_size: 2177,
+   crop_size: "512,960",
+   syncbn: true,
+   apex: true,
+   fp16: true,
+   gblur: true,
+   bs_trn: 4,
+   lr_schedule: poly,
+   poly_exp: 1.0,
+   optimizer: sgd,
+   lr: 0.000057,
+   max_epoch: 200,
+   snapshot: "/home/zcy/lyj/hms_conv2d/logs/train_mapillary/rainbow-earwig_2023.10.29_20.16/best_checkpoint_ep37.pth",
+   rmi_loss: true,
+   n_scales: '0.5,1.0,2.0',
+  }
+]

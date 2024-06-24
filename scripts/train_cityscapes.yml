@@ -1,0 +1,27 @@
+# Train cityscapes using Mapillary-pretrained weights
+# Requires 32GB GPU
+# Adjust nproc_per_node according to how many GPUs you have
+
+CMD: "python -m torch.distributed.launch --nproc_per_node=1 train.py"
+
+HPARAMS: [
+  {
+   dataset: cityscapes,
+   cv: 2,
+   syncbn: true,
+   apex: true,
+   fp16: true,
+   crop_size: "1024,1600",
+   bs_trn: 2,
+   poly_exp: 2,
+   lr: 0.000261,
+   rmi_loss: true,
+   max_epoch: 175,
+   n_scales: "0.5,1.0,2.0",
+   supervised_mscale_loss_wt: 0.05,
+   snapshot: "/home/zcy/lyj/hms_conv2d/logs/train_cityscapes/ocrnet.HRNet_Mscale_romantic-bonobo_2023.09.13_18.11/best_checkpoint_ep17.pth",
+   arch: ocrnet.HRNet_Mscale,
+   result_dir: LOGDIR,
+   RUNX.TAG: '{arch}',
+  },
+]
