@@ -2,19 +2,6 @@
 
 * The code is tested with pytorch 1.3 and python 3.6
 
-## Download Weights
-
-* Create a directory where you can keep large files. Ideally, not in this directory.
-```bash
-  > mkdir <large_asset_dir>
-```
-
-* Update `__C.ASSETS_PATH` in `config.py` to point at that directory
-
-  __C.ASSETS_PATH=<large_asset_dir>
-
-* Download pretrained weights from [google drive](https://drive.google.com/open?id=1fs-uLzXvmsISbS635eRZCc5uzQdBIZ_U) and put into `<large_asset_dir>/seg_weights`
-
 ## Download/Prepare Data
 
 If using Cityscapes, download Cityscapes data, then update `config.py` to set the path:
